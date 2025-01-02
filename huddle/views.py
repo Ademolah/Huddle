@@ -2,6 +2,7 @@ from django.shortcuts import render, redirect
 from .models import Huddle
 from django.contrib import messages
 
+from .utilities import notify_users
 from .forms import ItemForm
 
 # Create your views here.
@@ -26,6 +27,8 @@ def huddle(request):
             item = form.save(commit=False)
             item.huddle = huddle
             item.save()
+
+            notify_users(huddle, item.user)
 
             return redirect(f"/huddle/?key={key}&user={user}")
 
