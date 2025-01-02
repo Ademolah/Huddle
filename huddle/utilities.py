@@ -1,6 +1,7 @@
 from django.conf import settings
 from django.core.mail import send_mail
 from django.utils import timezone
+from datetime import timedelta
 
 
 from .models import Item
@@ -17,3 +18,12 @@ def notify_users(huddle, user):
     from_email = settings.DEFAULT_FROM_EMAIL
 
     send_mail(subject, message, from_email, users)
+
+
+def remove_old_huddles():
+    twenty_four_hours_ago = timezone.now() - timedelta(hours=24)
+    old_items = Item.objects.filter(created_at__gt = twenty_four_hours_ago) 
+
+    if old_items.count == 0:
+        huddle = old_items.first().huddle
+        huddle.delete()
