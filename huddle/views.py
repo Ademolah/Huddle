@@ -1,4 +1,4 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from .models import Huddle
 from django.contrib import messages
 
@@ -26,6 +26,8 @@ def huddle(request):
             item = form.save(commit=False)
             item.huddle = huddle
             item.save()
+
+            return redirect(f"/huddle/?key={key}&user={user}")
 
 
     return render(request, 'huddle/huddle.html', {
