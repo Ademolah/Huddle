@@ -2,9 +2,9 @@
 
 {% block content %}
     <div class="max-w-2xl mx-auto text-white bg-slate-800 p-8 rounded-xl">
-        <h2 class="mb-6 text-2xl">Huddle-HUDDLENAME</h2>
+        <h2 class="mb-6 text-2xl">Huddle-{{ huddle.key }}</h2>
 
-        <form method="post" action="{% url 'huddle' %}?user={{ user }}&key=huddlekey" class="space-y-4">
+        <form method="post" action="{% url 'huddle' %}?user={{ user }}&key={{ huddle.key }}" class="space-y-4">
             {% csrf_token %}
 
             <input type="hidden" name="user" value="{{ user}}">

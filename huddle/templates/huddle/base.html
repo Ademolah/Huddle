@@ -14,6 +14,14 @@
     </nav>
     
     <div class="p-8">
+        {% if messages %}
+            {% for message in messages %}
+                <div class="mb-4 py-4 px-6 bg-sky-800 text-white rounded-xl">
+                    {{ message }}
+                </div>
+            {% endfor %}
+        {% endif %}
+
         {% block content %}
         {% endblock %}
     </div>
