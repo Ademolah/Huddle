@@ -11,6 +11,7 @@ https://docs.djangoproject.com/en/5.1/ref/settings/
 """
 
 from pathlib import Path
+import os
 
 import pymysql
 
@@ -89,15 +90,26 @@ WSGI_APPLICATION = 'huddleproject.wsgi.application'
 # }
 
 DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.mysql',
-        'NAME': 'huddle',
-        'USER': 'root',
-        'PASSWORD': 'Demola321@',
-        'HOST': 'localhost',
-        'PORT': 3306,
+    "default": {
+        "ENGINE": "django.db.backends.postgresql",
+        "NAME": os.environ["POSTGRES_DB"],
+        "USER": os.environ["POSTGRES_USER"],
+        "PASSWORD": os.environ["POSTGRES_PASSWORD"],
+        "HOST": os.environ["POSTGRES_HOST"],
+        "PORT": os.environ["POSTGRES_PORT"],
     }
 }
+
+# DATABASES = {
+#     'default': {
+#         'ENGINE': 'django.db.backends.mysql',
+#         'NAME': 'huddle',
+#         'USER': 'root',
+#         'PASSWORD': 'Demola321@',
+#         'HOST': 'localhost',
+#         'PORT': 3306,
+#     }
+# }
 
 
 # Password validation
