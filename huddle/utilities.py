@@ -4,6 +4,9 @@ from django.utils import timezone
 from datetime import timedelta
 
 
+# from celery import shared_task
+
+
 from .models import Item
 
 def notify_users(huddle, user):
